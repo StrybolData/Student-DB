@@ -38,19 +38,21 @@ def dispatcher(commands):
     if commands[0] ==  'print':
         print ('I will print the DB master')
         printercomm()
+    if commands[0] ==  'save':
+        print ('I will save the DB master')
+        save()
 
 def load_students(students):
     file1= open('filename.csv','r')
-    csv_file= file1.read()
-    print(students)
-    csv_file.close()
+    reader = csv.DictReader('filename.csv')
+    for row in reader:
+        print(students)
 
 def addcomm (name_student,job_student,python_exp):
     if name_student in students.keys():
-        display_log()
         print('Sorry master, but this name already exists in the database')
     else:
-        students[name_student] = (job_student, python_exp)
+        students[name_student]= (job_student, python_exp)
     display_log()
     save ()
     print("Added: ",name_student, job_student, python_exp )
