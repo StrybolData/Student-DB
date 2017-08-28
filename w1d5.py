@@ -1,10 +1,3 @@
-# define a global student database
-# student_db is the data structure that contains information about students.
-#the infinit loop should ask for the command/function each time
-# the DB should include the following functions={'add': add_user,'delete': delete_user}
-# functions_to_call= functions[cmd[0]]
-# to make it a list of words for dispatcher or make it already like a list
-
 import math
 import datetime
 import csv
@@ -17,12 +10,12 @@ def genie():
 
     while True:
 
-        i = input("Please insert your command, cause your will is my command: ")
-        i2= i.split()
-        if (i.find('goaway')!= -1):
+        user_input = input("Please insert your command, cause your will is my command: ")
+        user_input2= user_input.split()
+        if (user_input.find('goaway')!= -1):
             return exit()
         else:
-            dispatcher(i2)
+            dispatcher(user_input2)
 
 
 def dispatcher(commands):
@@ -39,10 +32,18 @@ def dispatcher(commands):
     if commands[0] ==  'average':
         print ('I will calculate the average student scores master')
         averagecomm()
+    if commands[0] ==  'load':
+        print ('These are your historical records master:')
+        load_students(students)
     if commands[0] ==  'print':
         print ('I will print the DB master')
         printercomm()
 
+def load_students(students):
+    file1= open('filename.csv','r')
+    csv_file= file1.read()
+    print(students)
+    csv_file.close()
 
 def addcomm (name_student,job_student,python_exp):
     if name_student in students.keys():
@@ -122,4 +123,5 @@ def printercomm ():
         display_log()
         print(name_student, students[name_student], students[name_student][0], students[name_student][1])
     print ('----------')
+
 
